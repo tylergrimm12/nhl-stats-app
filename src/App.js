@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react'
+import { Container } from '@mui/joy';
+import ViewTeam from './components/ViewTeam';
+import Selector from './components/Selector';
+import ViewDivisions from './components/ViewDivisions';
+import ViewAwards from './components/ViewAwards';
 
-function App() {
+const App = () => {
+  let component
+  switch (window.location.pathname) {
+    case '/':
+      component = <ViewTeam/>
+      break
+    case '/players': 
+      component = <ViewTeam />
+      break
+    case '/teams': 
+      component = <ViewDivisions />
+      break
+    case '/awards': 
+      component = <ViewAwards />
+      break
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Container>
+    <Selector></Selector>
+    {component}
+  </Container>
   );
 }
 
-export default App;
+export default App
